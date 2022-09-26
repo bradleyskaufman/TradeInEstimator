@@ -1,0 +1,152 @@
+package lab6;
+import java.util.Scanner;
+
+/**
+ *
+ * @author bradkaufman24
+ */
+public class Lab6 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Estimate One = new Estimate();
+        
+        System.out.println("What is the year of your vehicle?");
+        int inputYear = scanner.nextInt();
+        System.out.println("What is the make of your vehicle?");
+        String inputMake = scanner.next();
+        System.out.println("What is the model of your vehicle?");
+        String inputModel = scanner.next();
+        System.out.println("Is the current condition of your vehicle excellent or poor?");
+        String inputCondition = scanner.next();
+        System.out.println("What is the current mileage on you vehicle?");
+        int inputMileage = scanner.nextInt();
+        
+        One.setData(inputYear, inputMake, inputModel, inputCondition, inputMileage);
+        int price = One.price();
+        
+        System.out.println("Your vehicle's estimated worth is: $" + price);
+    }
+}
+
+class Estimate {
+    
+    int currentMileage;
+    int carYear;
+    private int carPrice;
+    String carMake;
+    String carModel;
+    String carCondition;
+    
+    public Estimate() {
+        currentMileage = 0;
+        carYear = 0;
+        carPrice = 10000;
+        carMake = "";
+        carModel = "";
+        carCondition = "";
+    }
+    public Estimate (int year, String make, String model, String condition, int mileage) {
+      this.carYear = year;
+      this.carMake = make;
+      this.carModel = model;
+      this.carCondition = condition;
+      this.currentMileage = mileage; 
+    }
+    void setData(int year, String make, String model, String condition, int mileage) { 
+      this.carYear = year;
+      this.carMake = make;
+      this.carModel = model;
+      this.carCondition = condition;
+      this.currentMileage = mileage;
+      this.getYear();
+      this.getMake();
+      this.getModel();
+      this.getCondition();
+      this.getMileage();
+      this.getPrice();
+    } 
+public int getYear() {
+        return carYear;
+    }
+public String getMake() {
+        return carMake;
+    }
+public String getModel() {
+        return carModel;
+    }
+public String getCondition() {
+        return carCondition;
+    }
+public int getMileage() {
+        return currentMileage;
+    }
+public int getPrice() {
+        return currentMileage;
+    }
+        
+public void setCarYear(int carYear) {
+        this.carYear = carYear;
+    }
+public void setPrice(int carPrice) {
+        this.carPrice = carPrice;
+    }
+public void setMake(String carMake) {
+        this.carMake = carMake;
+    }
+public void setModel(String carModel) {
+        this.carModel = carModel;
+    }
+public void setCondition(String carCondition) {
+        this.carCondition = carCondition;
+    }
+public void setMileage (int currentMileage) {
+        this.currentMileage = currentMileage;
+    }
+
+int price() {
+    if (carYear >= 2015) {
+        carPrice+= 3000;
+    } else {
+        carPrice = carPrice;
+    }
+    
+    if (carMake.equalsIgnoreCase("Porsche")) {
+        carPrice+= 10000;
+    } else {
+        carPrice = carPrice;
+    }
+    
+    if (currentMileage >= 200000) {
+        carPrice-= 10000;
+    } else if (currentMileage >= 100000) {
+        carPrice-= 5000;
+    } else {
+         carPrice = carPrice;
+    }
+    switch(this.carCondition) {
+    case "Excellent":
+        this.carPrice+= 2000;
+        break;
+    case "Poor":
+        this.carPrice-= 3000;
+        break;
+    case "excellent":
+        this.carPrice+= 2000;
+        break;
+    case "poor":
+        this.carPrice-= 3000;
+        break;
+    }
+ 
+   return this.carPrice;
+}
+
+}
+
+
+
